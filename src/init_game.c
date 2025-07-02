@@ -2,14 +2,16 @@
 
 void	init_player(t_player *player, char **map)
 {
-	player->pos.x = 0;
-	player->pos.y = 0;
+	(void)map;
+	player->pos.x = 5.5;
+	player->pos.y = 5.5;
 	player->dir.x = 0;
-	player->dir.y = 0;
-	player->camera_plane.x = 0;
+	player->dir.y = -1;
+	player->camera_plane.x = 0.66;
 	player->camera_plane.y = 0;
-	get_player_pos(player, map);
-	get_player_dir(player, map);
+	//NÃO MECHE AQUI
+	// get_player_pos(player, map);
+	// get_player_dir(player, map);
 }
 
 void	init_img(t_img *img)
