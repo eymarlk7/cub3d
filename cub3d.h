@@ -17,7 +17,13 @@
 typedef struct map
 {
 	char	**map;
-}			t_map;
+}	t_map;
+
+typedef	struct s_point
+{
+	int	y;
+	int	x;
+}	t_point;
 
 typedef struct s_img
 {
@@ -26,26 +32,26 @@ typedef struct s_img
 	int		endian;
 	int		line_lenght;
 	void		*img_ptr;
-}			t_img;
+}	t_img;
 
 typedef struct s_vector
 {
 	float	y;
 	float	x;
-}			t_vec;
+}	t_vec;
 
 typedef struct s_mlx
 {
 	void	*mlx_win;
 	void	*mlx_ptr;
-}			t_mlx;
+}	t_mlx;
 
 typedef struct s_player
 {
 	t_vec	dir;
 	t_vec	pos;
 	t_vec	camera_plane;
-}			t_player;
+}	t_player;
 
 typedef struct s_engine
 {
@@ -53,14 +59,16 @@ typedef struct s_engine
 	t_vec	sideDist;
 	t_vec	deltaDist;
 	t_vec	camaraPixel;
+	t_point	mapPos;
 	float	mult;
-}			t_cast;
+}	t_cast;
 
 typedef struct s_data
 {
 	t_mlx	mlx;
 	t_img	img;
 	t_map	map;
+	t_point	point;
 	t_player player;
 	t_cast	r3d;
 }	t_data;
