@@ -14,6 +14,12 @@
 # include "./libft/libft.h"
 # include "./minilibx-linux/mlx.h"
 
+
+# define FLOOR 0x009a8c98
+# define SKY 0x008eecf5
+# define RED 0xFF0000
+# define DARKRED 0x8b0000
+
 typedef struct map
 {
 	char	**map;
@@ -55,12 +61,18 @@ typedef struct s_player
 
 typedef struct s_engine
 {
+	float	mult;
+	int	side;
+	int	stepX;
+	int	stepY;
+	
+
+	t_point	mapPos;
 	t_vec	rayDir;
 	t_vec	sideDist;
 	t_vec	deltaDist;
 	t_vec	camaraPixel;
-	t_point	mapPos;
-	float	mult;
+	float	perpWallDist;
 }	t_cast;
 
 typedef struct s_data
@@ -86,7 +98,7 @@ int     get_player_dir(t_player *player, char **map);
 int     get_player_pos(t_player *player, char **map);
 
 void	init_img(t_img *img);
-void	drawVerLine(t_img *img, int x, int start, int end);
+void	drawVerLine(t_img *img, int x, t_point new_points, int color);
 void    my_mlx_put_pixel(t_img *img, int y, int x, int color);
 
 t_vec	sum_vector(t_vec v1, t_vec v2);

@@ -14,7 +14,7 @@ int     get_player_pos(t_player *player, char **map)
                         if (map[y][x] == 'N' || map[y][x] == 'S'||
                         map[y][x] == 'E' || map[y][x] == 'W')
                         {
-                                player->pos = create_vector((float)y, (float)x);
+                                player->pos = create_vector((float)y + .5, (float)x + .5);
                                 return (1);
                         }
                         x++;
