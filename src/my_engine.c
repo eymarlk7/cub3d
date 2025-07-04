@@ -43,7 +43,9 @@ void	set_sideDistVal(t_data *data)
 
 void	dda(t_data *data)
 {
-	while (data->map.map[data->r3d.mapPos.y][data->r3d.mapPos.x])
+	bool hit = false;
+
+	while (hit == false)
 	{
 		if (data->r3d.sideDist.x < data->r3d.sideDist.y)
 		{
@@ -57,9 +59,10 @@ void	dda(t_data *data)
 			data->r3d.mapPos.y += data->r3d.stepY;
 			data->r3d.side = 1;
 		}
-		if (data->map.map[data->r3d.mapPos.y][data->r3d.mapPos.x] == '1')
-			break;
+		if (data->map.map[data->r3d.mapPos.y][data->r3d.mapPos.x] > '0')
+			hit = true;
 	}
+	
 }
 
 void	draw_on_screen(t_data *data, int x, int color)
@@ -100,13 +103,22 @@ void	my_engine(t_data *data)
 		get_someVals(data);
 		set_sideDistVal(data);
 		dda(data);
+		// if (data->r3d.side == 0)
+		// {
+		// 	data->r3d.perpWallDist = (data->r3d.sideDist.x - data->r3d.deltaDist.x);
+		// 	color = DARKRED;
+		// }
+		// else
+		// 	data->r3d.perpWallDist = (data->r3d.sideDist.y - data->r3d.deltaDist.y);
 		if (data->r3d.side == 0)
-		{
-			data->r3d.perpWallDist = (data->r3d.sideDist.x - data->r3d.deltaDist.x);
-			color = DARKRED;
-		}
-		else
-			data->r3d.perpWallDist = (data->r3d.sideDist.y - data->r3d.deltaDist.y);
+	{
+		data->r3d.perpWallDist = (data->r3d.mapPos.x - data->player.pos.x + ((1 - data->r3d.stepX) / 2)) / data->r3d.rayDir.x;
+		color = DARKRED;
+	}
+	else
+	{
+		data->r3d.perpWallDist = (data->r3d.mapPos.y - data->player.pos.y + ((1 - data->r3d.stepY) / 2)) / data->r3d.rayDir.y;
+	}
 		draw_on_screen(data, x, color);
 		x++;
 	}
