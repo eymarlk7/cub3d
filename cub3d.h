@@ -41,6 +41,16 @@ typedef struct s_img
 	void		*img_ptr;
 }	t_img;
 
+typedef	struct s_keypress
+{
+	int	up;
+	int	down;
+	int	left;
+	int	right;
+	int	es;
+}	t_key;
+
+
 typedef struct s_vector
 {
 	float	y;
@@ -82,12 +92,17 @@ typedef struct s_data
 	t_img	img;
 	t_map	map;
 	t_point	point;
+	t_key	key;
 	t_player player;
 	t_cast	r3d;
 }	t_data;
 
 
 /* FUNCTIONS */
+int key_press_release(int code, t_data *data);
+void	init_types(t_data *data);
+void	 mov_player(t_data *data);
+int	key_press(int code, t_data *data);
 int	init_map(t_map	*map, char *argv);
 void	init_mlx(t_mlx *mlx);
 void	init_data(t_data *data, char *argv);

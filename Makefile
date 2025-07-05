@@ -6,6 +6,7 @@ SRCS =	./src/main.c \
 		./src/player.c \
 		./src/vector.c \
 		./src/draw/draw.c \
+		./src/player_mov.c \
 		./src/parsed_map.c \
 		./src/init_game.c \
 		./src/my_engine.c 

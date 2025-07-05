@@ -82,8 +82,8 @@ void	draw_on_screen(t_data *data, int x, int color)
 		new_points.y = HEIGHT - 1;
 	while (i <= new_points.x)
 		my_mlx_put_pixel(&data->img, i++, x, SKY);
-	j = new_points.y;
-	while (j < HEIGHT - 1)
+	j = new_points.y + 1;
+	while (j < HEIGHT)
 		my_mlx_put_pixel(&data->img, j++, x, FLOOR);
 	drawVerLine(&data->img, x, new_points, color);
 }
@@ -103,22 +103,17 @@ void	my_engine(t_data *data)
 		get_someVals(data);
 		set_sideDistVal(data);
 		dda(data);
-		// if (data->r3d.side == 0)
-		// {
-		// 	data->r3d.perpWallDist = (data->r3d.sideDist.x - data->r3d.deltaDist.x);
-		// 	color = DARKRED;
-		// }
-		// else
-		// 	data->r3d.perpWallDist = (data->r3d.sideDist.y - data->r3d.deltaDist.y);
 		if (data->r3d.side == 0)
-	{
-		data->r3d.perpWallDist = (data->r3d.mapPos.x - data->player.pos.x + ((1 - data->r3d.stepX) / 2)) / data->r3d.rayDir.x;
-		color = DARKRED;
-	}
-	else
-	{
-		data->r3d.perpWallDist = (data->r3d.mapPos.y - data->player.pos.y + ((1 - data->r3d.stepY) / 2)) / data->r3d.rayDir.y;
-	}
+		{
+			data->r3d.perpWallDist = (data->r3d.mapPos.x - data->player.pos.x +
+			((1 - data->r3d.stepX) / 2)) / data->r3d.rayDir.x;
+			color = DARKRED;
+		}
+		else
+		{
+			data->r3d.perpWallDist = (data->r3d.mapPos.y - data->player.pos.y +
+			((1 - data->r3d.stepY) / 2)) / data->r3d.rayDir.y;
+		}
 		draw_on_screen(data, x, color);
 		x++;
 	}
