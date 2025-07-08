@@ -6,8 +6,12 @@ void	init_player(t_player *player, char **map)
 	player->pos = (t_vec){0.0, 0.0};
 	player->dir = (t_vec){0.0, 0.0};
 	player->camera_plane = (t_vec){0.0, 0.0};
-	get_player_pos(player, map);
-	get_player_dir(player, map);
+	if (get_player_pos(player, map) == -1 ||
+	get_player_dir(player, map) == -1)
+	{
+		ft_putstr_fd("Ain't got no player on the map\n", 2);
+		exit(EXIT_FAILURE);
+	}
 }
 
 void	init_img(t_img *img)
@@ -41,18 +45,16 @@ void	init_engine(t_cast *cast)
 	cast->camaraPixel = (t_vec){0.0, 0.0};
 }
 
-void	init_game(t_data *data, char *argv)
+void	init_data(t_data *data, char *argv)
 {
+	if (init_map(&data->map, argv) == -1)
+	{
+		ft_putstr_fd("error to open map file\n", 2);
+		exit(EXIT_FAILURE);
+	}
 	init_mlx(&data->mlx);
 	data->img.img_ptr = mlx_new_image(data->mlx.mlx_ptr, WIDTH, HEIGHT);
 	init_img(&data->img);
-	if (init_map(&data->map, argv) == -1)
-		return ;
 	init_player(&data->player, data->map.map);
 	init_engine(&data->r3d);
-}
-
-void	init_data(t_data *data, char *argv)
-{
-	init_game(data, argv);
 }

@@ -39,7 +39,15 @@ char	**get_map(int fd)
 int	init_map(t_map	*map, char *argv)
 {
 	int	fd;
+	char	*file_name;
 
+	if ((file_name = ft_strchr(argv, '.')))
+	{
+		if (ft_strcmp(file_name, ".cub") != 0)
+			return (-1);
+	}
+	else
+		return (ft_putstr_fd("error: extension file is wrong\n", 2), -1);
 	if ((fd = open_file(argv)) == -1)
 		return (ft_putstr_fd("error to open file\n", 2),-1);
 	map->map = get_map(fd);

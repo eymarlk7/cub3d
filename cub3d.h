@@ -19,7 +19,11 @@
 # define FLOOR 0x009a8c98
 # define SKY 0x008eecf5
 # define RED 0xFF0000
-# define DARKRED 0x8b0000
+# define BLUE 0x0000ff
+# define GREEN 0x008000
+# define WHITE 0xffffff
+// # define DARKRED 0x8b0000
+
 
 typedef struct map
 {
@@ -99,6 +103,7 @@ typedef struct s_data
 
 
 /* FUNCTIONS */
+void	clean_all(t_data *data);
 int key_press_release(int code, t_data *data);
 void	init_types(t_data *data);
 void	 mov_player(t_data *data);

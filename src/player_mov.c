@@ -11,12 +11,12 @@ void init_types(t_data *data)
 
 void mov_player(t_data *data)
 {
-	double	mov_speed = 0.08;
-	double rotSpeed = 0.06;
-	double oldDirX;
-	double oldPlanX;
-	double	new_y;
-	double	new_x;
+	double	mov_speed = 0.02;
+	double rotSpeed = 0.01;
+	double oldDirX = 0.0;
+	double oldPlanX = 0.0;
+	double	new_y = 0.5;
+	double	new_x = 0.5;
 
 	if (data->key.up)
 	{
@@ -54,30 +54,6 @@ void mov_player(t_data *data)
 		data->player.camera_plane.x = data->player.camera_plane.x * cos(rotSpeed) - data->player.camera_plane.y * sin(rotSpeed);
 		data->player.camera_plane.y = oldPlanX * sin(rotSpeed) + data->player.camera_plane.y * cos(rotSpeed);
 	}
-}
-
-void	free_memory(char **matrix)
-{
-	int	i;
-
-	i = 0;
-	while (matrix[i])
-	{
-		free(matrix[i]);
-		i++;
-	}
-	free(matrix);
-}
-
-void	clean_all(t_data *data)
-{
-	free_memory(data->map.map);
-	mlx_destroy_image(data->mlx.mlx_ptr, data->img.img_ptr);
-	mlx_clear_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
-	mlx_destroy_window(data->mlx.mlx_ptr, data->mlx.mlx_win);
-	mlx_destroy_display(data->mlx.mlx_ptr);
-	free(data->mlx.mlx_ptr);
-	exit(0);
 }
 
 int key_press(int code, t_data *data)

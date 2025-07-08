@@ -5,11 +5,12 @@ CFLAGS = -Wall -Wextra -Werror
 SRCS =	./src/main.c \
 		./src/player.c \
 		./src/vector.c \
-		./src/draw/draw.c \
-		./src/player_mov.c \
-		./src/parsed_map.c \
 		./src/init_game.c \
-		./src/my_engine.c 
+		./src/my_engine.c \
+		./src/parsed_map.c \
+		./src/player_mov.c \
+		./src/draw/draw.c \
+		./src/clean_memory.c 
 
 OBJ = $(SRCS:.c=.o)
 MLX_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm 

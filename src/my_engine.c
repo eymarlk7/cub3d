@@ -62,7 +62,6 @@ void	dda(t_data *data)
 		if (data->map.map[data->r3d.mapPos.y][data->r3d.mapPos.x] > '0')
 			hit = true;
 	}
-	
 }
 
 void	draw_on_screen(t_data *data, int x, int color)
@@ -107,12 +106,27 @@ void	my_engine(t_data *data)
 		{
 			data->r3d.perpWallDist = (data->r3d.mapPos.x - data->player.pos.x +
 			((1 - data->r3d.stepX) / 2)) / data->r3d.rayDir.x;
-			color = DARKRED;
+			// color = DARKRED;
 		}
 		else
 		{
 			data->r3d.perpWallDist = (data->r3d.mapPos.y - data->player.pos.y +
 			((1 - data->r3d.stepY) / 2)) / data->r3d.rayDir.y;
+		}
+
+		if (data->r3d.side == 0)
+		{
+			if (data->r3d.rayDir.x < 0)
+				color = WHITE;
+			else
+				color = BLUE;
+		}
+		else
+		{
+			if (data->r3d.rayDir.y < 0)
+				color = RED;
+			else
+				color = GREEN;
 		}
 		draw_on_screen(data, x, color);
 		x++;
