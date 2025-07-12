@@ -10,8 +10,11 @@ SRCS =	./src/main.c \
 		./src/parsed_map.c \
 		./src/player_mov.c \
 		./src/draw/draw.c \
-		./src/clean_memory.c 
-
+		./src/clean_memory.c \
+		./init/init_data.c	\
+		./utils/debug.c	\
+		./src/error.c \
+		./src/fill_color_textures.c
 OBJ = $(SRCS:.c=.o)
 MLX_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm 
 MLX = ./minilibx-linux/libmlx.a

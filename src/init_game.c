@@ -47,11 +47,15 @@ void	init_engine(t_cast *cast)
 
 void	init_data(t_data *data, char *argv)
 {
-	if (init_map(&data->map, argv) == -1)
+	if (init_map(data, argv) == -1)
 	{
 		ft_putstr_fd("error to open map file\n", 2);
 		exit(EXIT_FAILURE);
 	}
+	get_file_data(data, data->map.file);
+	//debug_print_char_tab(data->map.file);
+	debug_display_mapinfo(data);
+	exit(1);
 	init_mlx(&data->mlx);
 	data->img.img_ptr = mlx_new_image(data->mlx.mlx_ptr, WIDTH, HEIGHT);
 	init_img(&data->img);

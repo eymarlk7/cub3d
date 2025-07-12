@@ -13,6 +13,23 @@ void	free_memory(char **matrix)
 	free(matrix);
 }
 
+void	free_tab(void **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	if (tab)
+	{
+		free(tab);
+		tab = NULL;
+	}
+}
+
 void	clean_all(t_data *data)
 {
     if (data->map.map)

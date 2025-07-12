@@ -36,7 +36,7 @@ char	**get_map(int fd)
 }
 
 
-int	init_map(t_map	*map, char *argv)
+int	init_map(t_data	*data, char *argv)
 {
 	int	fd;
 	char	*file_name;
@@ -50,8 +50,12 @@ int	init_map(t_map	*map, char *argv)
 		return (ft_putstr_fd("error: extension file is wrong\n", 2), -1);
 	if ((fd = open_file(argv)) == -1)
 		return (ft_putstr_fd("error to open file\n", 2),-1);
-	map->map = get_map(fd);
-	if (!map->map)
+	init_map_info(&data->map);
+	init_texinfo(&data->texinfo);
+	data->map.fd = fd;
+	data->map.path = argv;
+	data->map.file = get_map(fd);
+	if (!data->map.file)
 		return (ft_putstr_fd("map error\n", 2), -1);
 	return (0);
 }
