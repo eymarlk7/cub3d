@@ -206,7 +206,8 @@ int	err_msg_val(int detail, char *str, int code);
 int	fill_color_textures(t_data *data, t_texinfo *textures, char *line, int j);
 void	debug_display_mapinfo(t_data *data);
 void	free_tab(void **tab);
-
+int	create_map(t_data *data, char **file, int i);
+size_t	find_biggest_len(t_map *map, int i);
 
 t_vec	sum_vector(t_vec v1, t_vec v2);
 t_vec	create_vector(float y, float x);

@@ -14,7 +14,9 @@ SRCS =	./src/main.c \
 		./init/init_data.c	\
 		./utils/debug.c	\
 		./src/error.c \
-		./src/fill_color_textures.c
+		./src/fill_color_textures.c \
+		./src/create_game_map.c \
+		./src/utils.c
 OBJ = $(SRCS:.c=.o)
 MLX_FLAGS = -Lmlx -lmlx -lXext -lX11 -lm 
 MLX = ./minilibx-linux/libmlx.a
@@ -25,7 +27,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) -L./minilibx-linux $(MLX_FLAGS) -o $(NAME) $(LIBFT)
-	rm -f $(OBJ)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(MLX):
 	$(MAKE) -C ./minilibx-linux

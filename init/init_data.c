@@ -79,52 +79,48 @@ static int	fill_direction_textures(t_texinfo *textures, char *line, int j)
 	return (SUCCESS);
 }
 
-static int	ignore_whitespaces_get_info(t_data *data, char **map, int i, int j)
+static int	ignore_whitespaces_get_info(t_data *data, char **file, int i, int j)
 {
-	while (map[i][j] == ' ' || map[i][j] == '\t' || map[i][j] == '\n')
+	while (file[i][j] == ' ' || file[i][j] == '\t' || file[i][j] == '\n')
 		j++;
-	if (ft_isprint(map[i][j]) && !ft_isdigit(map[i][j]))
+	if (ft_isprint(file[i][j]) && !ft_isdigit(file[i][j]))
 	{
 		
-		if (map[i][j + 1] && ft_isprint(map[i][j + 1])
-		&& !ft_isdigit(map[i][j + 1]))
+		if (file[i][j + 1] && ft_isalpha(file[i][j + 1]))
 		{
-			printf("%c  | %c \n", map[i][j], map[i][j + 1]);
-
-			if (fill_direction_textures(&data->texinfo, map[i], j) == ERR)
+			if (fill_direction_textures(&data->texinfo, file[i], j) == ERR)
 				return (err_msg(data->map.path, ERR_TEX_INVALID, FAILURE));
 			return (BREAK);
 		}	
 		else
 		{
-			if (fill_color_textures(data, &data->texinfo, map[i], j) == ERR)
+			if (fill_color_textures(data, &data->texinfo, file[i], j) == ERR)
 				return (FAILURE);
 			return (BREAK);
 		}	
 	}
-	else if (ft_isdigit(map[i][j]))
+	else if (ft_isdigit(file[i][j]))
 	{
-		// if (create_map(data, map, i) == FAILURE)
-		// 	return (err_msg(data->mapinfo.path, ERR_INVALID_MAP, FAILURE));
-		return (FAILURE);
-		// return (SUCCESS);
+		if (create_map(data, file, i) == FAILURE)
+			return (err_msg(data->map.path, ERR_INVALID_MAP, FAILURE));
+		return (SUCCESS);
 	}
 	return (CONTINUE);
 }
 
-int	get_file_data(t_data *data, char **map)
+int	get_file_data(t_data *data, char **file)
 {
 	int	i;
 	int	j;
 	int	ret;
 
 	i = 0;
-	while (map[i])
+	while (file[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (file[i][j])
 		{
-			ret = ignore_whitespaces_get_info(data, map, i, j);
+			ret = ignore_whitespaces_get_info(data, file, i, j);
 			if (ret == BREAK)
 				break ;
 			else if (ret == FAILURE)

@@ -53,9 +53,6 @@ void	init_data(t_data *data, char *argv)
 		exit(EXIT_FAILURE);
 	}
 	get_file_data(data, data->map.file);
-	//debug_print_char_tab(data->map.file);
-	debug_display_mapinfo(data);
-	exit(1);
 	init_mlx(&data->mlx);
 	data->img.img_ptr = mlx_new_image(data->mlx.mlx_ptr, WIDTH, HEIGHT);
 	init_img(&data->img);

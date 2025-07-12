@@ -80,10 +80,10 @@ void	draw_on_screen(t_data *data, int x, int color)
 	if (new_points.y >= HEIGHT)
 		new_points.y = HEIGHT - 1;
 	while (i <= new_points.x)
-		my_mlx_put_pixel(&data->img, i++, x, SKY);
+		my_mlx_put_pixel(&data->img, i++, x, data->texinfo.hex_ceiling);
 	j = new_points.y + 1;
 	while (j < HEIGHT)
-		my_mlx_put_pixel(&data->img, j++, x, FLOOR);
+		my_mlx_put_pixel(&data->img, j++, x, data->texinfo.hex_floor);
 	drawVerLine(&data->img, x, new_points, color);
 }
 
