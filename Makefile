@@ -27,6 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ) $(LIBFT) $(MLX)
 	$(CC) $(CFLAGS) $(OBJ) -L./minilibx-linux $(MLX_FLAGS) -o $(NAME) $(LIBFT)
+	rm -f $(OBJ)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
