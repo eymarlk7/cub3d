@@ -87,11 +87,15 @@ typedef struct s_vec
 
 typedef struct s_keypress
 {
-	int	up;
-	int	down;
-	int	left;
-	int	right;
-	int	es;
+	int	W;
+	int	S;
+	int	A;
+	int	D;
+	int	Es;
+	int arrow_up;
+	int arrow_down;
+	int arrow_left;
+	int arrow_right;
 }	t_key;
 
 typedef struct s_img
@@ -138,6 +142,7 @@ typedef struct s_cast
 	t_vec		rayDir;
 	t_vec		sideDist;
 	t_vec		deltaDist;
+	int			look_offset;
 	t_vec		camaraPixel;
 	float		perpWallDist;
 }	t_cast;
